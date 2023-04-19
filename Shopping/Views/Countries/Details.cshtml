@@ -1,0 +1,116 @@
+@model Shopping.Data.Entities.Country
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Country</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StateCount)
+        </dt>
+            @Html.DisplayFor(model => model.StateCount)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-controller="States" asp-action="AddEstado" asp-route-id="@Model.Id" class="btn btn-outline-info">Agregar Estado</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">Editar</a>
+    <a asp-action="Index"class="btn btn-outline-primary">Regresar</a>
+</div>
+<hr>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.states.FirstOrDefault().Nombre)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.states.FirstOrDefault().cities.FirstOrDefault().Nombre)
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.states)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.CityCount)
+                    
+                </td>
+
+                <td>
+                    <a asp-controller="States" asp-action="EditState" asp-route-id="@item.Id" class="btn btn-outline-primary">Editar</a>
+                    <a asp-controller="States" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-warning">Detalles</a>
+                    <a onclick="Modal(@item.Id,@item.countryId,'@item.Nombre')" class="btn btn-outline-danger">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<!-- Modal Estado-->
+<div class="modal" tabindex="-1" id="Modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ELIMINAR</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" asp-controller="States" asp-action="Delete">
+                <div class="modal-body">
+                    <input type="hidden" id="IdEstado" name="Id" />
+                    <input type="hidden" id="IdCountry" name="IdCountry" />
+                    <p id="MensajeDelete"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+                
+@section Scripts{
+    <script>
+        function Modal(id,idCountry,nombre) {
+            $(document).ready(function () {
+
+                document.getElementById("Modal").id = "Modal" + id;
+                document.getElementById("IdEstado").setAttribute("value", id);
+                document.getElementById("IdCountry").setAttribute("value", idCountry);
+
+                document.getElementById("MensajeDelete").innerHTML = nombre;
+                $("#Modal" + id).modal("show");
+
+                document.getElementById("Modal" + id).id = "Modal";
+
+
+            });
+        }
+    </script>
+}

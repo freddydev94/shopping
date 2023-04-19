@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Freddy Hernandez\\source\\repos\\Shopping\\Shopping\\Shopping.csproj": {}
+    "C:\\Users\\Freddy Hernandez\\source\\repos\\shopping\\Shopping\\Shopping.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Freddy Hernandez\\source\\repos\\Shopping\\Shopping\\Shopping.csproj": {
+    "C:\\Users\\Freddy Hernandez\\source\\repos\\shopping\\Shopping\\Shopping.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Freddy Hernandez\\source\\repos\\Shopping\\Shopping\\Shopping.csproj",
+        "projectUniqueName": "C:\\Users\\Freddy Hernandez\\source\\repos\\shopping\\Shopping\\Shopping.csproj",
         "projectName": "Shopping",
-        "projectPath": "C:\\Users\\Freddy Hernandez\\source\\repos\\Shopping\\Shopping\\Shopping.csproj",
+        "projectPath": "C:\\Users\\Freddy Hernandez\\source\\repos\\shopping\\Shopping\\Shopping.csproj",
         "packagesPath": "C:\\Users\\Freddy Hernandez\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Freddy Hernandez\\source\\repos\\Shopping\\Shopping\\obj\\",
+        "outputPath": "C:\\Users\\Freddy Hernandez\\source\\repos\\shopping\\Shopping\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,9 +44,31 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.4, )"
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             }
           },
           "imports": [

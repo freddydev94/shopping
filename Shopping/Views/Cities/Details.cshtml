@@ -1,0 +1,30 @@
+﻿@model Shopping.Data.Entities.City
+
+@{
+    ViewData["Title"] = "Detalle";
+}
+
+<h1>Detalle</h1>
+
+<div>
+    <h4>Ciudad/Municipios</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-controller="Cities" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-outline-info">Agregar Ciudad</a>
+    <a asp-controller="Cities" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">Editar</a>
+    <a asp-controller="States" asp-action="Details" asp-route-id="@Model.statesId" class="btn btn-outline-primary">Regresar</a>
+</div>
+
+
+
+                

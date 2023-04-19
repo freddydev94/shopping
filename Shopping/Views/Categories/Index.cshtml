@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Shopping.Data.Entities.Category>
+@using Shopping.Data.Entities
+@{
+    ViewData["Title"] = "Index Categorias";
+}
+<script>
+    function Modal(id,nombre) {
+        $(document).ready(function () {
+          
+            document.getElementById("Modal").id = "Modal"+id;
+            document.getElementById("IdCategoria").setAttribute("value",id);
+            
+            document.getElementById("MensajeDelete").innerHTML = nombre;
+            $("#Modal" + id).modal("show");
+
+            document.getElementById("Modal"+id).id = "Modal";
+            
+     
+        });
+    }
+</script>
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Crear nueva categoria</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-warning">Detalles</a>
+                    <a onclick="Modal(@item.Id,'@item.Nombre')" class="btn btn-outline-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal" tabindex="-1" id="Modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ELIMINAR</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" asp-action="Delete">
+                <div class="modal-body">
+                    <input type="hidden" id="IdCategoria" name="Id" />
+                    <p id="MensajeDelete"><</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
